@@ -6,6 +6,10 @@ so the WDK can build and broadcast Bitcoin transactions while [Turnkey](https://
 signs the PSBT. Third of a series after the EVM ones for
 [Turnkey](https://github.com/G9NCUE/wdk-signer-turnkey-evm) and [Dfns](https://github.com/G9NCUE/wdk-signer-dfns-evm).
 
+On 11 September 2026 the demo below took a testnet4 faucet payment, built a transfer with the WDK,
+had Turnkey sign the PSBT and broadcast it, confirmed in block 151880:
+[9befce5f…40cf0](https://mempool.space/testnet4/tx/9befce5fc9443788921013db68818263f78e4ab422d9bc78ec0d82c5f3740cf0).
+
 Unlike the EVM packages this one targets a branch, not a release: the Bitcoin signer abstraction is
 still under review, and this repo installs `github:claudiovb/wdk-wallet-btc#poc-signer` directly.
 
@@ -74,6 +78,8 @@ previous transactions. Testnet3 works too, set `BTC_ELECTRUM_HOST=electrum.block
   signers have no xpub to give.
 - `WalletAccountBtc` has `path` but no `index` getter, unlike the EVM account.
 - The account builds BIP-84 inputs with `witnessUtxo` only. See above.
+- Testnet Electrum servers refuse to estimate fees for a one-block target. The demo pins a rate
+  with the account's `feeRate` option, 2 sat/vB by default.
 - Turnkey has address formats for mainnet, testnet, signet and regtest, so the same signer runs
   against the WDK's regtest test harness with bitcoind and electrs.
 

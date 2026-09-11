@@ -74,8 +74,10 @@ while (balance === 0n) {
 out('balance', `${balance} sats`)
 
 step(`Send ${opts.amount} sats`)
-const tx = { to: opts.to || address, value: BigInt(opts.amount) }
+// testnet servers often cannot estimate fees, so the demo pins a rate
+const tx = { to: opts.to || address, value: BigInt(opts.amount), feeRate: BigInt(env('DEMO_FEE_RATE_SAT_VB', '2')) }
 out('to', tx.to === address ? `${tx.to} (self)` : tx.to)
+out('fee rate', `${tx.feeRate} sat/vB`)
 const { fee } = await account.quoteSendTransaction(tx)
 out('quoted fee', `${fee} sats`)
 if (opts['dry-run']) {
