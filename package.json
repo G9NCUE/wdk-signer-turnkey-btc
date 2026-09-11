@@ -1,0 +1,46 @@
+{
+  "name": "wdk-signer-turnkey-btc",
+  "version": "0.0.1",
+  "description": "Turnkey signer for the Tether WDK Bitcoin wallet, implements ISignerBtc from wdk-wallet-btc (PR #50)",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package": "./package.json"
+  },
+  "private": true,
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "demo": "node --env-file=.env bin/demo.js",
+    "example": "node --env-file=.env examples/sign-with-turnkey.js"
+  },
+  "devDependencies": {
+    "@bitcoinerlab/btcmessage": "^4.0.1",
+    "@bitcoinerlab/secp256k1": "^1.2.0",
+    "@tetherto/wdk-wallet-btc": "github:claudiovb/wdk-wallet-btc#poc-signer",
+    "@turnkey/sdk-server": "^8.4.0",
+    "bip32": "^5.0.1",
+    "bip39": "^3.1.0",
+    "bitcoinjs-lib": "^7.0.2"
+  },
+  "bin": {
+    "wdk-turnkey-btc-demo": "./bin/demo.js"
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "bin/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/G9NCUE/wdk-signer-turnkey-btc"
+  },
+  "peerDependencies": {
+    "@bitcoinerlab/btcmessage": "^4.0.0",
+    "@bitcoinerlab/secp256k1": "^1.2.0",
+    "@tetherto/wdk-wallet-btc": "github:claudiovb/wdk-wallet-btc#poc-signer",
+    "@turnkey/sdk-server": ">=2.0.0",
+    "bitcoinjs-lib": "^7.0.0"
+  }
+}
